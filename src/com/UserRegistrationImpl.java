@@ -31,7 +31,7 @@ public class UserRegistrationImpl {
 	public void takeUserInput() {
 		boolean flag;
 		Scanner readIn = new Scanner(System.in);
-		/*System.out.println("Enter a Valid first name(Starts with a Cap and has min 3 letters)");
+		System.out.println("Enter a Valid first name(Starts with a Cap and has min 3 letters)");
 		String firstName = readIn.next();
 		flag = firstNameCheck(firstName);
 		checkValidity(flag);
@@ -42,7 +42,7 @@ public class UserRegistrationImpl {
 		System.out.println("Enter a Valid Email");
 		String email = readIn.next();
 		flag = emailCheck(email);
-		checkValidity(flag);*/
+		checkValidity(flag);
 		System.out.println("Enter a Valid Phone");
 		String phone = readIn.next();
 		flag = phoneCheck(phone);
