@@ -3,9 +3,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistrationImpl {
-	public Pattern firstNamePattern = Pattern.compile("[A-Z][a-z]{2,}");
+	
 	public boolean firstNameCheck( String firstName) {
+		Pattern firstNamePattern = Pattern.compile("[A-Z][a-z]{2,}");
 		Matcher match = firstNamePattern.matcher(firstName);
+        if(match.matches()){
+            return true;
+        }
+        return false;
+	}
+	public boolean emailCheck( String firstName) {
+		Pattern emailPattern = Pattern.compile("^[a-zA-Z]{3}\\.?[a-zA-Z0-9\\$\\_\\+]*\\@[a-z0-9]*\\.(co|in|com|net)");
+		Matcher match = emailPattern.matcher(firstName);
         if(match.matches()){
             return true;
         }
@@ -21,6 +30,10 @@ public class UserRegistrationImpl {
 		System.out.println("Enter a Valid last name(Starts with a Cap and has min 3 letters)");
 		String lastName = readIn.next();
 		flag = firstNameCheck(lastName);
+		checkValidity(flag);
+		System.out.println("Enter a Valid Email()");
+		String email = readIn.next();
+		flag = emailCheck(email);
 		checkValidity(flag);
 	}
 	public void checkValidity(boolean flag) {
