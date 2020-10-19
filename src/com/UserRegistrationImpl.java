@@ -3,34 +3,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistrationImpl {
-	
-	public boolean firstNameCheck( String firstName) {
-		Pattern firstNamePattern = Pattern.compile("[A-Z][a-z]{2,}");
-		Matcher match = firstNamePattern.matcher(firstName);
-        if(match.matches()){
-            return true;
-        }
-        return false;
-	}
-	public boolean emailCheck( String email) {
-		Pattern emailPattern = Pattern.compile("^[a-zA-Z]{3}\\.?[a-zA-Z0-9\\$\\_\\+]*\\@[a-z0-9]*\\.(co|in|com|net)");
-		Matcher match = emailPattern.matcher(email);
-        if(match.matches()){
-            return true;
-        }
-        return false;
-	}
-	public boolean phoneCheck( String phone) {
-		Pattern phonePattern = Pattern.compile("^[0-9\s]{2}[0-9]*{10}");
-		Matcher match = phonePattern.matcher(phone);
-        if(match.matches()){
-            return true;
-        }
-        return false;
-	}
-	public boolean passwordCheck( String password) {
-		Pattern passwordPattern = Pattern.compile("^(?=.{8}$)(?=.*[A-Z])(?=.*[0-9])");
-		Matcher match = passwordPattern.matcher(password);
+	public static final Pattern firstNamePattern = Pattern.compile("[A-Z][a-z]{2,}");
+	public static final Pattern emailPattern = Pattern.compile("^[a-zA-Z]{3}\\.?[a-zA-Z0-9\\$\\_\\+]*\\@[a-z0-9]*\\.(co|in|com|net)");
+	public static final Pattern phonePattern = Pattern.compile("^[0-9]{2}[\\s]{1}[0-9]*{10}");
+	public static final Pattern passwordPattern = Pattern.compile("^(?=.*[@#$%&*_=+].{8}$)(?=.*[A-Z])(?=.*[0-9])");
+	public boolean checkMatch( String matchString, Pattern pattern) {
+		Matcher match = pattern.matcher(matchString);
         if(match.matches()){
             return true;
         }
@@ -41,23 +19,23 @@ public class UserRegistrationImpl {
 		Scanner readIn = new Scanner(System.in);
 		System.out.println("Enter a Valid first name(Starts with a Cap and has min 3 letters)");
 		String firstName = readIn.next();
-		flag = firstNameCheck(firstName);
+		flag = checkMatch(firstName, firstNamePattern);
 		checkValidity(flag);
 		System.out.println("Enter a Valid last name(Starts with a Cap and has min 3 letters)");
 		String lastName = readIn.next();
-		flag = firstNameCheck(lastName);
+		flag = checkMatch(lastName, firstNamePattern);
 		checkValidity(flag);
 		System.out.println("Enter a Valid Email");
 		String email = readIn.next();
-		flag = emailCheck(email);
+		flag = checkMatch(email, emailPattern);
 		checkValidity(flag);
 		System.out.println("Enter a Valid Phone");
 		String phone = readIn.next();
-		flag = phoneCheck(phone);
+		flag = checkMatch(phone, phonePattern);
 		checkValidity(flag);
 		System.out.println("Enter a Valid Password");
 		String password = readIn.next();
-		flag = passwordCheck(password);
+		flag = checkMatch(password, passwordPattern);
 		checkValidity(flag);
 	}
 	public void checkValidity(boolean flag) {
