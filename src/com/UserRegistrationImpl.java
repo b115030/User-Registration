@@ -29,7 +29,7 @@ public class UserRegistrationImpl {
         return false;
 	}
 	public boolean passwordCheck( String password) {
-		Pattern passwordPattern = Pattern.compile(".{8,}");
+		Pattern passwordPattern = Pattern.compile("(?=.*[A-Z]).{8,}");
 		Matcher match = passwordPattern.matcher(password);
         if(match.matches()){
             return true;
