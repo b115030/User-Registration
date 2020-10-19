@@ -18,6 +18,10 @@ public class UserRegistrationImpl {
 		String firstName = readIn.next();
 		flag = firstNameCheck(firstName);
 		checkValidity(flag);
+		System.out.println("Enter a Valid last name(Starts with a Cap and has min 3 letters)");
+		String lastName = readIn.next();
+		flag = firstNameCheck(lastName);
+		checkValidity(flag);
 	}
 	public void checkValidity(boolean flag) {
 		if (flag == true) {
