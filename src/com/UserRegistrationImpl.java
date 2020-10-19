@@ -28,6 +28,14 @@ public class UserRegistrationImpl {
         }
         return false;
 	}
+	public boolean passwordCheck( String password) {
+		Pattern passwordPattern = Pattern.compile(".{8,}");
+		Matcher match = passwordPattern.matcher(password);
+        if(match.matches()){
+            return true;
+        }
+        return false;
+	}
 	public void takeUserInput() {
 		boolean flag;
 		Scanner readIn = new Scanner(System.in);
@@ -46,6 +54,10 @@ public class UserRegistrationImpl {
 		System.out.println("Enter a Valid Phone");
 		String phone = readIn.next();
 		flag = phoneCheck(phone);
+		checkValidity(flag);
+		System.out.println("Enter a Valid Password");
+		String password = readIn.next();
+		flag = passwordCheck(password);
 		checkValidity(flag);
 	}
 	public void checkValidity(boolean flag) {
